@@ -8,3 +8,7 @@ ADD Gemfile $APP_ROOT
 ADD Gemfile.lock $APP_ROOT
 RUN bundle install
 ADD . $APP_ROOT
+
+RUN rails db:migrate -e production
+
+CMD ["rails", "server", "-b", "0.0.0.0", "-e", "production"]
